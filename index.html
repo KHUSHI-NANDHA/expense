@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Finance Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Home Page -->
+    <div id="homePage" class="page active">
+      <header class="header">
+        <div class="user-greeting">
+          <p>Good morning,</p>
+          <h2>Khushi</h2>
+        </div>
+        <div class="avatar">
+          <i class="fa-solid fa-user"></i>
+        </div>
+      </header>
+
+      <section class="add-transaction card">
+        <h3>Add Transaction</h3>
+        <div class="inputs-container">
+          <div class="input-col">
+            <div class="input-group">
+              <span class="input-icon"><i class="fa-solid fa-plus text-success"></i></span>
+              <input type="number" id="income" placeholder="Income Amount">
+            </div>
+            <div class="input-group">
+              <span class="input-icon"><i class="fa-solid fa-tag"></i></span>
+              <input type="text" id="incomeDesc" placeholder="Source (Optional)">
+            </div>
+          </div>
+          <div class="input-divider"></div>
+          <div class="input-col">
+            <div class="input-group">
+              <span class="input-icon"><i class="fa-solid fa-minus text-danger"></i></span>
+              <input type="number" id="expense" placeholder="Expense Amount">
+            </div>
+            <div class="input-group">
+              <span class="input-icon"><i class="fa-solid fa-tag"></i></span>
+              <input type="text" id="expenseDesc" placeholder="Item (Optional)">
+            </div>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="addData()">
+          <i class="fa-solid fa-paper-plane"></i> Save Entry
+        </button>
+      </section>
+
+      <section class="balance-card">
+        <p>Total Balance</p>
+        <h1 id="finalTotal">₹0</h1>
+        <div class="balance-details">
+          <div class="income">
+            <div class="card-icon is-income"><i class="fa-solid fa-arrow-down"></i></div>
+            <div>
+              <p>Income</p>
+              <h3 id="cardTotalIncome">₹0</h3>
+            </div>
+          </div>
+          <div class="expense">
+            <div class="card-icon is-expense"><i class="fa-solid fa-arrow-up"></i></div>
+            <div>
+              <p>Expense</p>
+              <h3 id="cardTotalExpense">₹0</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="recent-transactions">
+        <div class="section-header">
+          <h3>Recent Activity</h3>
+        </div>
+        <ul class="transaction-list" id="transactionList">
+          <!-- Transactions injected by JS -->
+        </ul>
+      </section>
+    </div>
+
+    <!-- Analysis Page -->
+    <div id="analysisPage" class="page hidden">
+      <header class="header">
+        <h2>Analytics Overview</h2>
+      </header>
+      
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon income-bg"><i class="fa-solid fa-arrow-down"></i></div>
+          <p>Total Income</p>
+          <h3 id="totalIncome" class="income-text">₹0</h3>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon expense-bg"><i class="fa-solid fa-arrow-up"></i></div>
+          <p>Total Expense</p>
+          <h3 id="totalExpense" class="expense-text">₹0</h3>
+        </div>
+        <div class="stat-card full-width">
+          <div class="stat-icon balance-bg"><i class="fa-solid fa-wallet"></i></div>
+          <p>Net Balance</p>
+          <h3 id="balance">₹0</h3>
+        </div>
+      </section>
+
+      <div class="charts-wrapper">
+        <section class="chart-section card">
+          <h3>Income vs Expense</h3>
+          <div class="canvas-container">
+            <canvas id="pieChart"></canvas>
+          </div>
+        </section>
+
+        <section class="chart-section card mb-large">
+          <h3>Transaction History</h3>
+          <div class="canvas-container">
+            <canvas id="barChart"></canvas>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a class="nav-item active" id="nav-home" onclick="showPage('home')">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+      <a class="nav-item" id="nav-analysis" onclick="showPage('analysis')">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span>Analytics</span>
+      </a>
+    </nav>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
